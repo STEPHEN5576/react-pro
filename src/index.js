@@ -5,24 +5,31 @@ import "./index.css";
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import bookList from './books'
+import Book from './book'
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 
 const Books = () => {
-  const getbook = (x)=>{
-    const book = bookList.find((book)=>(book.id === x));
-    console.log(book);
-  }
+  // const getbook = (x)=>{
+  //   const book = bookList.find((book)=>(book.id === x));
+  //   console.log(book);
+  // }
 
   return (
+      <>
+      <h1>Amazon top selling books</h1>
     <section className="books">
       {/* <EventExamples/> */}
-      {bookList.map((book) => {
+      {bookList.map((book, index) => {
         return (
-          <Book {...book} key={book.id} getbook={getbook} />
-        );
-      })}
+          <Book {...book} 
+          key={book.id} 
+          // getbook={getbook} 
+          index={index}/>
+          );
+        })}
     </section>
+        </>
   );
 };
 
@@ -69,22 +76,5 @@ const Books = () => {
 
 
 
-const Book = (props) => {
-  const { img, title, Author, getbook, id} = props;
-  // console.log(props);
-  // const display=()=>{
-  //   console.log(title);
-  // }
-  
-  return (
-    <article className="book">
-      <img src={img} alt={title} />
-      <h2>{title}</h2>
-      <h4>{Author.toUpperCase()}</h4>
-      <button onClick={()=> getbook(id)}>Display title</button>
-      
-    </article>
-  );
-};
 
 root.render(<Books></Books>);
